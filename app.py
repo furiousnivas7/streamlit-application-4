@@ -3,16 +3,16 @@ import json
 from datetime import datetime
 import os
 import openai
-from openai import OpenAI
+
 
 def save_data_as_json(file_name):
     if os.path.exists(file_name):
         with open(file_name,"r") as file:
-            return str(json.dumps(json.load(file)))
+            return json.dumps(json.load(file))
     return json.dumps([])
 
 def call_gbt3(prompt):
-    opanai.api.key=os.environ['OPEN_API_KEY']
+    openai.api_key = os.environ['OPEN_API_KEY']
     client=OpenAI()
 
     responce = client.completinons.create(
@@ -44,12 +44,13 @@ def main():
 
     if 'user_data.json' not in st.session_state:
         file_name="user_data.json"
-        st.session_state.user_data.json=""
+        st.session_state.user_data_json = ""
+
 
     st.title("User Information Form")
-    file_name = "expenses.json"
-    st.session_state.expenses_json = str(save_data_as_json(file_name))
-    expenses = save_data(file_name)
+    file_name = "user_data.json"
+    st.session_state.user_data.json = str(save_data_as_json(file_name))
+    # expenses = save_data(file_name)
 
     user_prompt = st.text_input("Enter your prompt for GPT-3.5")  
     button = st.button("Send Data to GPT-3.5") 
