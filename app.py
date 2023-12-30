@@ -4,7 +4,6 @@ from datetime import datetime
 import os
 import openai
 
-
 def save_data_as_json(file_name):
     if os.path.exists(file_name):
         with open(file_name,"r") as file:
