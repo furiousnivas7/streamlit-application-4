@@ -13,7 +13,7 @@ def save_data_as_json(file_name):
 
 def call_gbt3(prompt):
     openai.api_key = os.environ['OPEN_API_KEY']
-    client=OpenAI()
+    client=openai
 
     responce = client.completinons.create(
         model="gpt-3.5-turbo-instruct",  
@@ -49,14 +49,14 @@ def main():
 
     st.title("User Information Form")
     file_name = "user_data.json"
-    st.session_state.user_data.json = str(save_data_as_json(file_name))
+    st.session_state.user_data_json = str(save_data_as_json(file_name))
     # expenses = save_data(file_name)
 
     user_prompt = st.text_input("Enter your prompt for GPT-3.5")  
     button = st.button("Send Data to GPT-3.5") 
 
     if button:
-        full_prompt = str(st.session_state.expenses_json) + user_prompt  
+        full_prompt = str(st.session_state.user_data_json) + user_prompt  
         gpt3_response = call_gpt3(full_prompt)  
         st.write(gpt3_response)  
 
