@@ -25,6 +25,7 @@ def main():
         gender = st.selectbox("Gender", ["Male", "Female", "Other"])
         interest = st.text_area("Interest")
         work =st.text_input("work" ,placeholder="goverment or private")
+        salary=st.number_input("salary",placeholder="enter your salary")
         dob = st.date_input("Date of Birth")
 
         submitted = st.form_submit_button("Submit")
@@ -35,6 +36,7 @@ def main():
                 "gender": gender,
                 "interest": interest,
                 "work":work,
+                "salary":salary,
                 "dob": dob.strftime("%Y-%m-%d")
             }
             save_data(user_data)
