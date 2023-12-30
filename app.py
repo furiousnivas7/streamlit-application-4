@@ -23,7 +23,7 @@ def main():
         name = st.text_input("Name")
         age  =st.number_input("Age" ,placeholder=None,min_value=None,value="min")
         gender = st.selectbox("Gender", ["Male", "Female", "Other"])
-        interest = st.text_input("Interest")
+        interest = st.text_area("Interest")
         work =st.text_input("work" ,placeholder="goverment or private")
         dob = st.date_input("Date of Birth")
 
