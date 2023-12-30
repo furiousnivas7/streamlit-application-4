@@ -1,7 +1,27 @@
 import streamlit as st
 import json
 from datetime import datetime
+import os
+import openai
+from openai import OpenAI
 
+def save_data_as_json(file_name):
+    if os.path.exists(file_name):
+        with open(file_name,"r") as file:
+            return str(json.dumps(json.load(file)))
+    return json.dumps([])
+
+def call_gbt3(prompt):
+    opanai.api.key=os.environ['OPEN_API_KEY']
+    client=OpenAI()
+
+    responce = client.completinons.create(
+        model="gpt-3.5-turbo-instruct",  
+        prompt=prompt,  
+        max_tokens = 1000 
+    )
+
+    return responce.choices[0].text
 # Function to save data to a JSON file
 def save_data(data, filename="user_data.json"):
     try:
@@ -13,13 +33,34 @@ def save_data(data, filename="user_data.json"):
     existing_data.append(data)
 
     with open(filename, "w") as file:
-        json.dump(existing_data, file, indent=6)
+        json.dump(existing_data, file, indent=7)
 
 # Streamlit app
 def main():
-    st.title("User Information Form")
+    if 'full_prompt' not in st.session_state:
+        st.session_state.full_prompt=""
+    if 'gpt3_response' not in st.session_state:
+        st.session_state.gpt3_response=""
 
-    with st.form("user_info_form"):
+    if 'user_data.json' not in st.session_state:
+        file_name="user_data.json"
+        st.session_state.user_data.json=""
+
+    st.title("User Information Form")
+    file_name = "expenses.json"
+    st.session_state.expenses_json = str(save_data_as_json(file_name))
+    expenses = save_data(file_name)
+
+    user_prompt = st.text_input("Enter your prompt for GPT-3.5")  
+    button = st.button("Send Data to GPT-3.5") 
+
+    if button:
+        full_prompt = str(st.session_state.expenses_json) + user_prompt  
+        gpt3_response = call_gpt3(full_prompt)  
+        st.write(gpt3_response)  
+
+
+    with st.form("user_info_form",clear_on_submit=True):
         name = st.text_input("Name")
         age  =st.number_input("Age" ,placeholder="insert the age",value=None)
         gender = st.selectbox("Gender", ["Male", "Female", "Other"])
