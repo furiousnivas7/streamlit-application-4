@@ -36,5 +36,14 @@ def main():
             save_data(user_data)
             st.success("Data Saved Successfully!")
 
+    with open("user_data.json", "r") as json_file:
+        st.download_button(
+            label="Download JSON file",
+            data=json_file,
+            file_name="user_data.json",
+            mime="application/json"
+        )
+
+
 if __name__ == "__main__":
     main()
