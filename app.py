@@ -21,7 +21,7 @@ def main():
 
     with st.form("user_info_form"):
         name = st.text_input("Name")
-        age  =st.number_input("Age" ,placeholder=None,min_value=None,value="min")
+        age  =st.number_input("Age" ,placeholder="insert the age",,value=None)
         gender = st.selectbox("Gender", ["Male", "Female", "Other"])
         interest = st.text_area("Interest")
         work =st.text_input("work" ,placeholder="goverment or private")
