@@ -21,10 +21,10 @@ def main():
 
     with st.form("user_info_form"):
         name = st.text_input("Name")
-        age  =st.number_input("Age")
+        age  =st.number_input("Age" ,placeholder=None)
         gender = st.selectbox("Gender", ["Male", "Female", "Other"])
         interest = st.text_input("Interest")
-        work =st.text_input("private or goverment")
+        work =st.text_input("work" ,placeholder="goverment or private")
         dob = st.date_input("Date of Birth")
 
         submitted = st.form_submit_button("Submit")
