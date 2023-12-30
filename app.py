@@ -13,7 +13,7 @@ def save_data(data, filename="user_data.json"):
     existing_data.append(data)
 
     with open(filename, "w") as file:
-        json.dump(existing_data, file, indent=4)
+        json.dump(existing_data, file, indent=6)
 
 # Streamlit app
 def main():
@@ -21,16 +21,20 @@ def main():
 
     with st.form("user_info_form"):
         name = st.text_input("Name")
+        age  =st.number_input("Age")
         gender = st.selectbox("Gender", ["Male", "Female", "Other"])
         interest = st.text_input("Interest")
+        work =st.text_input("private or goverment")
         dob = st.date_input("Date of Birth")
 
         submitted = st.form_submit_button("Submit")
         if submitted:
             user_data = {
                 "name": name,
+                "age":age,
                 "gender": gender,
                 "interest": interest,
+                "work":work,
                 "dob": dob.strftime("%Y-%m-%d")
             }
             save_data(user_data)
