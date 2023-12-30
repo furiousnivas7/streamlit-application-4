@@ -50,7 +50,7 @@ def main():
     st.title("User Information Form")
     file_name = "user_data.json"
     st.session_state.user_data_json = str(save_data_as_json(file_name))
-    # expenses = save_data(file_name)
+    user_data = save_data(file_name)
 
     user_prompt = st.text_input("Enter your prompt for GPT-3.5")  
     button = st.button("Send Data to GPT-3.5") 
