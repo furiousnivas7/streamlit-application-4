@@ -3,6 +3,7 @@ import json
 from datetime import datetime
 import os
 import openai
+from openai import OpenAI
 
 def save_data_as_json(file_name):
     if os.path.exists(file_name):
@@ -12,7 +13,7 @@ def save_data_as_json(file_name):
 
 def call_gbt3(prompt):
     openai.api_key = os.environ['OPEN_API_KEY']
-    client=openai
+    client=OpenAI()
 
     responce = client.completinons.create(
         model="gpt-3.5-turbo-instruct",  
