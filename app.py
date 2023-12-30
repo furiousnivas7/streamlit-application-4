@@ -57,7 +57,7 @@ def main():
 
     if button:
         full_prompt = str(st.session_state.user_data_json) + user_prompt  
-        gpt3_response = call_gpt3(full_prompt)  
+        gpt3_response = call_gbt3(full_prompt)  
         st.write(gpt3_response)  
 
 
