@@ -67,9 +67,9 @@ def main():
         photo = st.file_uploader("Upload a photo")
         # submit= st.form_submit_button("Submit")
 
-        if name and age and gender and interest and work and salary and dob and religion and photo:
-            submitted = st.form_submit_button("Submit")
-            if submitted:
+        # if name and age and gender and interest and work and salary and dob and religion and photo:
+        submitted = st.form_submit_button("Submit")
+        if submitted:
                 user_data = {
                     "name": name,
                     "age":age,
@@ -83,8 +83,8 @@ def main():
                 }
                 save_data(user_data)
                 st.success("Data Saved Successfully!")
-        else:
-            st.warning("Please fill in all required fields.")
+        # else:
+        #     st.warning("Please fill in all required fields.")
 
     with open("user_data.json", "r") as json_file:
         st.download_button(
