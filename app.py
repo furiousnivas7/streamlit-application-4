@@ -59,7 +59,7 @@ def main():
         name = st.text_input("Name")
         age  =st.number_input("Age" ,placeholder="insert the age",value=None)
         gender = st.selectbox("Gender", ["Male", "Female", "Other"])
-        interest = st.text_area("Interest")
+        interest = st.text_area("Interest",placeholder=" You enter your requirments like salary religion gender work")
         work =st.text_input("work" ,placeholder="goverment or private")
         salary=st.number_input("salary",placeholder="enter your salary")
         dob = st.date_input("Date of Birth")
@@ -93,7 +93,7 @@ def main():
             file_name="user_data.json",
             mime="application/json"
         )
-    user_prompt = st.text_input("Enter your prompt for GPT-3.5")  
+    user_prompt = st.text_input(interest)  
     button = st.button("Send Data to GPT-3.5") 
 
     # if button:
