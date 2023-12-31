@@ -93,7 +93,7 @@ def main():
             file_name="user_data.json",
             mime="application/json"
         )
-    user_prompt = st.text_input(interest)  
+    user_prompt = st.text_input("Enter your prompt here")  
     button = st.button("Send Data to GPT-3.5") 
 
     # if button:
