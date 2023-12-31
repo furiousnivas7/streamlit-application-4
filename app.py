@@ -52,13 +52,7 @@ def main():
     st.session_state.user_data_json = str(save_data_as_json(file_name))
     user_data = save_data(file_name)
 
-    user_prompt = st.text_input("Enter your prompt for GPT-3.5")  
-    button = st.button("Send Data to GPT-3.5") 
-
-    # if button:
-    #     full_prompt = str(st.session_state.user_data_json) + user_prompt  
-    #     gpt3_response = call_gbt3(full_prompt)  
-    #     st.write(gpt3_response)  
+    
 
 
     with st.form("user_info_form",clear_on_submit=True):
@@ -99,7 +93,13 @@ def main():
             file_name="user_data.json",
             mime="application/json"
         )
+    user_prompt = st.text_input("Enter your prompt for GPT-3.5")  
+    button = st.button("Send Data to GPT-3.5") 
 
+    # if button:
+    #     full_prompt = str(st.session_state.user_data_json) + user_prompt  
+    #     gpt3_response = call_gbt3(full_prompt)  
+    #     st.write(gpt3_response)  
 
 if __name__ == "__main__":
     main()
