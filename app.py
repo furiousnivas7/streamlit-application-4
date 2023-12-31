@@ -2,8 +2,8 @@ import streamlit as st
 import json
 from datetime import datetime
 import os
-# import openai
-# from openai import OpenAI
+import openai
+from openai import OpenAI
 
 def save_data_as_json(file_name):
     if os.path.exists(file_name):
@@ -11,9 +11,9 @@ def save_data_as_json(file_name):
             return json.dumps(json.load(file))
     return json.dumps([])
 
-# def call_gbt3(prompt):
-#     openai.api_key = os.environ['OPEN_API_KEY']
-#     client=OpenAI()
+def call_gbt3(prompt):
+    openai.api_key = os.environ['OPEN_API_KEY']
+    client=OpenAI()
 
     responce = client.completinons.create(
         model="gpt-3.5-turbo-instruct",  
@@ -96,10 +96,19 @@ def main():
     user_prompt = st.text_input("Enter your prompt here")  
     button = st.button("Send Data to GPT-3.5") 
 
-    # if button:
-    #     full_prompt = str(st.session_state.user_data_json) + user_prompt  
-    #     gpt3_response = call_gbt3(full_prompt)  
-    #     st.write(gpt3_response)  
+    if button:
+        full_prompt = str(st.session_state.user_data_json) + user_prompt  
+        gpt3_response = call_gbt3(full_prompt)  
+    
+        user_data = {
+                "interest": user_prompt,
+                "gpt3_response": gpt3_response,
+                "photo": st.file_uploader("Upload a photo").read()
+            }
+
+        save_data(user_data)
+        st.write("OpenAI Response:", gpt3_response)
+        st.success("Data Saved Successfully!") 
 
 if __name__ == "__main__":
     main()
