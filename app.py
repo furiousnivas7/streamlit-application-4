@@ -33,7 +33,7 @@ def save_data(data, filename="user_data.json"):
     existing_data.append(data)
 
     with open(filename, "w") as file:
-        json.dump(existing_data, file, indent=7)
+        json.dump(existing_data, file, indent=9)
 
 # Streamlit app
 def main():
