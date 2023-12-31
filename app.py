@@ -71,7 +71,7 @@ def main():
         dob = st.date_input("Date of Birth")
         religion = st.text_input("Religion")
         photo = st.file_uploader("Upload a photo")
-
+        submit= st.form_submit_button("Submit")
 
         if name and age and gender and interest and work and salary and dob and religion and photo:
             submitted = st.form_submit_button("Submit")
