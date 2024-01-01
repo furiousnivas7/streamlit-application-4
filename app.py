@@ -15,13 +15,13 @@ def call_gbt3(prompt):
     openai.api_key = os.environ['OPEN_API_KEY']
     client=OpenAI()
 
-    responce = client.completinons.create(
+    response = client.completinons.create(
         model="gpt-3.5-turbo-instruct",  
         prompt=prompt,  
         max_tokens = 1000 
     )
 
-    return responce.choices[0].text
+    return response.choices[0].text
 # Function to save data to a JSON file
 def save_data(data, filename="user_data.json"):
     try:
@@ -33,7 +33,7 @@ def save_data(data, filename="user_data.json"):
     existing_data.append(data)
 
     with open(filename, "w") as file:
-        json.dump(existing_data, file, indent=9)
+        json.dump(existing_data, file, indent=12)
 
 # Streamlit app
 def main():
@@ -66,6 +66,10 @@ def main():
         dob = st.date_input("Date of Birth")
         religion = st.text_input("Religion")
         photo = st.file_uploader("Upload a photo")
+        Planetary_position =st.text_input("Planetary_position" ,placeholder="enter your Planetary_position")
+        star =st.selectbox("star" ,('Ashwini','Bharani','Krittika','Rohini','Mrighasira','Ardra','Punarvasu','Pushya','Ashlesha','Magha','Purva Phalguni','Uttara Phalguni','Hasta','Chitra','Swati','Vishaka','Anuradha','Jyestha','Moola','Purvashada','Uttarashada','Sharavan','Dhanishta','Shatabisha','Purvabhadra','Uttarabhadra','Revat'))
+        horoscope_chat =st.file_uploader("Upload a photo of your horoscope_chart")
+        
         # submit= st.form_submit_button("Submit")
 
         # if name and age and gender and interest and work and salary and dob and religion and photo:
