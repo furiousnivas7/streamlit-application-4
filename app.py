@@ -84,7 +84,10 @@ def main():
                     "salary":salary,
                     "dob": dob.strftime("%Y-%m-%d"),
                     "religion": religion,
-                    "photo": photo.read()
+                    "photo": photo.read(),
+                    "Planetary_position":Planetary_position,
+                    "star":star,
+                    "horoscope_chat":photo.read()    
                 }
                 save_data(user_data)
                 st.success("Data Saved Successfully!")
